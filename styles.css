@@ -21,51 +21,73 @@
 
 html {
   width: 100%;
-  height: 100%;
-  background-color: #008080;
+  max-height: 100vh;
+  background-color: #031859;
   font-family: 'square_sans_serif';
   font-size: 20px;
 }
 
 
 body {
-  position: absolute;
-  width: 1600px;
-  height: 100vh;
+  width: 100%;
+  min-height: 100%;
   padding: 0;
+  justify-content: center;
+  flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
+body.loading {
+  display: none;
+}
+body.loaded {
+  display: flex;
+}
+
 .background {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
-  width: 1600px;
-  height: 700px;
+  width: 100%;
+  height: auto;
+  height: 100vh;
+  object-fit: fill;
 }
 
-.logo {
-  width: 150px;
-  height: auto;
+
+#app {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  max-width: 700px;
+  align-items: center;
+  justify-content: center;
 }
 
 #drum-machine {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 40px;
   border: 2px solid;
   border-color:  #FFFFFF #808080 #808080 #FFFFFF;
   box-shadow: 2px 2px 8px black;
-  padding: 0 60px;
-  width: 600px;
-  margin:20px auto;
+  padding: 0 40px;
+  margin: auto;
+  transform: translateY(50%);
 }
 
-.display-container{
-  width: 300px;
-  margin: 0 auto;
+.display-container {
+  width: 100%;
+  height: 100%;
+  flex: 5;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
 }
 .drumpad{
   display: grid;
@@ -74,7 +96,8 @@ body {
   border-color:  #FFFFFF #808080 #808080 #FFFFFF;
   box-shadow: 2px 2px 8px black;
   padding: 1px;
-  height: 200px;
+  height: 100%;
+  min-height: 200px;
   margin:20px auto;
 }
 
@@ -92,7 +115,7 @@ body {
   background: linear-gradient(120deg, rgb(3,24,91),rgb(183, 187, 228, 0.8));;
 }
 
-#display{
+#display {
   color: rgb(183, 187, 228, 0.8);
   display: block;
   margin: 20px;
@@ -100,11 +123,13 @@ body {
 }
 
 #volume-container{
-width: 100px;
 display: flex;
+flex: 1;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+width: 30px;
+height: 100%;
 margin: 0;
 margin-top: 40px;
 padding: 0;
@@ -118,6 +143,33 @@ padding: 0;
 
 
 #volume-label{
+  font-size: clamp(0.8em, 3.5vw, 1em);
   color: rgb(183, 187, 228, 0.8);
   padding-top: 70px;
+}
+
+@media screen and (max-width: 530px) {
+
+  .display-container {
+    flex: 8;
+  }
+
+  #volume-container {
+    margin-bottom: 50px;
+  }
+
+  #volume-bar{
+    height: 5px;
+}
+  
+  #volume-label{
+    display: none;
+  }
+
+  #drum-machine {
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+
 }
